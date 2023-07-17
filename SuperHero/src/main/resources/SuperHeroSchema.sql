@@ -8,7 +8,7 @@ USE SuperHeroDB;
 CREATE TABLE location (
    locationId  INT NOT NULL AUTO_INCREMENT,
    locationName  VARCHAR(50) NOT NULL,
-   locartionDesc VARCHAR(50) NOT NULL,
+   locationDesc VARCHAR(50) NOT NULL,
    locationAddress VARCHAR(50) NOT NULL,
    locationLatitude VARCHAR(50) NOT NULL,
    locationLongitude  VARCHAR(50) NOT NULL,
