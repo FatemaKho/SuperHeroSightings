@@ -1,6 +1,7 @@
 package com.sg.SuperHero.dao;
 
 import com.sg.SuperHero.SuperHeroApplication;
+import com.sg.SuperHero.dto.Location;
 import com.sg.SuperHero.dto.Sighting;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,11 +28,12 @@ class SightingDaoDBTest{
 
     @BeforeEach
     void setUp() {
-        List<Sighting> sightings = SightingDao.getAllSightings();
-        for(Sighting sighting : sightings) {
+        List<Sighting> sightings = sightingDao.getAllSightings();
+        for (Sighting sighting : sightings) {
             sightingDao.deleteSighting(sighting.getSightingId());
         }
     }
+
 
     @Test
     void getAllSightings() {
