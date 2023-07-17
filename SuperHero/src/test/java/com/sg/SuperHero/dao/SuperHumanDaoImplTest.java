@@ -1,24 +1,38 @@
 package com.sg.SuperHero.dao;
 
+
+
+import com.sg.SuperHero.SuperHeroApplication;
 import com.sg.SuperHero.dto.SuperHuman;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-@RunWith(SpringRunner.class) // Use SpringRunner as the test runner
-@SpringBootTest // Load the Spring application context for testing
-@Transactional // Use transactions for each test method
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = SuperHeroApplication.class)
 public class SuperHumanDaoImplTest {
 
     @Autowired
-    private SuperHumanDao superHumanDao; // The DAO to be tested
+    private SuperHumanDao superHumanDao;
+
+    @Test
+    public void testCreate() {
+        // Arrange: Create a SuperHuman entity
+        SuperHuman superhuman = new SuperHuman("Thanos", "The Mad Titan", false, 3);
+
+        // Act: Insert the SuperHuman into the database
+        superHumanDao.create(superhuman);
+
+        // Assert: Check if the SuperHuman was successfully inserted by fetching it by ID
+        SuperHuman retrievedSuperhuman = superHumanDao.getById(superhuman.getSuperhumanId());
+        assertEquals(superhuman, retrievedSuperhuman);
+    }
 
     @Test
     public void testGetById() {
@@ -47,19 +61,6 @@ public class SuperHumanDaoImplTest {
         // Assert: Check if the list contains the inserted SuperHumans
         assertTrue(superHumans.contains(superhuman1));
         assertTrue(superHumans.contains(superhuman2));
-    }
-
-    @Test
-    public void testCreate() {
-        // Arrange: Create a SuperHuman entity
-        SuperHuman superhuman = new SuperHuman("Thanos", "The Mad Titan", false, 3);
-
-        // Act: Insert the SuperHuman into the database
-        superHumanDao.create(superhuman);
-
-        // Assert: Check if the SuperHuman was successfully inserted by fetching it by ID
-        SuperHuman retrievedSuperhuman = superHumanDao.getById(superhuman.getSuperhumanId());
-        assertEquals(superhuman, retrievedSuperhuman);
     }
 
     @Test
