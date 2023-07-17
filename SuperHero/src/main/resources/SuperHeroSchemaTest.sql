@@ -35,11 +35,13 @@ CREATE TABLE superhuman (
 
 
 
-CREATE TABLE sighting(
+CREATE TABLE Sighting(
 	sightingId INT PRIMARY KEY AUTO_INCREMENT,
-    superhumanId INT  NOT NULL,
+    superHumanId INT  NOT NULL,
+    locationId INT NOT NULL,
     dateSeen DATE NOT NULL,
-    FOREIGN KEY (superhumanId) REFERENCES superhuman(superhumanId)
+    FOREIGN KEY (superhumanId) REFERENCES superhuman(superhumanId),
+    FOREIGN KEY (locationId) REFERENCES location(locationId)
 );
 
 CREATE TABLE organizations(
