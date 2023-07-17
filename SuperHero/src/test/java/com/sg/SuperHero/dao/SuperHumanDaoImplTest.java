@@ -1,10 +1,11 @@
 package com.sg.SuperHero.dao;
 
 
-
 import com.sg.SuperHero.SuperHeroApplication;
+import com.sg.SuperHero.dto.Location;
 import com.sg.SuperHero.dto.SuperHuman;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,11 +13,21 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
+import static com.sg.SuperHero.dto.SuperHuman.*;
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SuperHeroApplication.class)
 public class SuperHumanDaoImplTest {
+    @BeforeEach
+    void setUp() {
+        List<SuperHuman> superHumans = superHumanDao.getAll();
+
+        // Delete all SuperHumans
+        for (SuperHuman superHuman : superHumans) {
+            superHumanDao.delete(superHuman.getSuperhumanId());
+        }
+    }
 
     @Autowired
     private SuperHumanDao superHumanDao;
@@ -30,8 +41,8 @@ public class SuperHumanDaoImplTest {
         superHumanDao.create(superhuman);
 
         // Assert: Check if the SuperHuman was successfully inserted by fetching it by ID
-        SuperHuman retrievedSuperhuman = superHumanDao.getById(superhuman.getSuperhumanId());
-        assertEquals(superhuman, retrievedSuperhuman);
+          SuperHuman retrievedSuperhuman = superHumanDao.getById(superhuman.getSuperhumanId());
+          assertEquals(superhuman, retrievedSuperhuman);
     }
 
     @Test
@@ -87,8 +98,14 @@ public class SuperHumanDaoImplTest {
         // Act: Delete the SuperHuman from the database
         superHumanDao.delete(superhuman.getSuperhumanId());
 
-        // Assert: Check if the SuperHuman was deleted by trying to fetch it by ID (should be null)
-        SuperHuman deletedSuperhuman = superHumanDao.getById(superhuman.getSuperhumanId());
-        assertNull(deletedSuperhuman);
+        List<SuperHuman> allSuperHumans = superHumanDao.getAll();
+        assertFalse(allSuperHumans.contains(superhuman));
     }
 }
+
+
+
+
+
+
+

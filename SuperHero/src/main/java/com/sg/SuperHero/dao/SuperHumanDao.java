@@ -7,7 +7,7 @@ import java.util.List;
 public interface SuperHumanDao {
     SuperHuman getById(int superhumanId);
     List<SuperHuman> getAll();
-    void create(SuperHuman superhuman);
+    SuperHuman create(SuperHuman superhuman);
     void update(SuperHuman superhuman);
 
     void delete(int superhumanId);
