@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SuperHero/SuperHero.iml" filepath="$PROJECT_DIR$/SuperHero/SuperHero.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/SuperHeroSightings.iml" filepath="$PROJECT_DIR$/.idea/SuperHeroSightings.iml" />
     </modules>
   </component>

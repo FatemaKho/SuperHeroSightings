@@ -35,7 +35,7 @@ CREATE TABLE superhuman (
 
 
 
-CREATE TABLE Sighting(
+CREATE TABLE sighting(
 	sightingId INT PRIMARY KEY AUTO_INCREMENT,
     superHumanId INT  NOT NULL,
     locationId INT NOT NULL,
