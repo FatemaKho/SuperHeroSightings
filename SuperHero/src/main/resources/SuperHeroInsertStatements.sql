@@ -12,3 +12,33 @@ INSERT INTO superpowers (superpowerId, superpowerName, superpowerDesc) VALUES
   ('Scarlet Witch', 'Reality Warping Witch', 0, 4),  -- Scarlet Witch has "Reality Warping" powers (superpowerId = 4)
   ('Loki', 'God of Mischief', 0, 5),  -- Loki has "Illusions" (superpowerId = 5)
   ('Thor', 'God of Thunder', 1, 6);  -- Thor has "Storm Manipulation" (superpowerId = 6)
+
+-- Inserting Data into Organizations (2 Hero, 2 Villain)
+-- True or 1 = Hero Organization
+-- False or 0 = Villain Organization
+INSERT INTO organizations (OrganizationId, organizationName, organizationDesc, organizationAddress, organizationContactInfo, organizationIsHero)
+VALUES
+	(1, 
+    "The Tricksters", 
+    "Quick-witted heroes that outsmart villains and protect the world",
+    "Mischief City, NY",
+    "384-497-8225",
+    True),
+    (2, 
+    "The Viper Defenders", 
+    "Deadly villains whose venomous tactics strike fear into the hearts of their adversaries",
+    "Venomville, CA",
+    "686-944-6247",
+    False),
+    (3, 
+    "The Goliaths", 
+    "Unwavering determination, and an unwavering commitment to protect the innocent and vanquish evil",
+    "Metropolis, FL",
+    "459-529-7755",
+    True),
+    (4, 
+    "The Demon Allies", 
+    "Malevolent supernatural beings united by their insidious desires for power, chaos, and the destruction of all that is good",
+    "Shadowville, TX",
+    "662-365-4310",
+    False);
