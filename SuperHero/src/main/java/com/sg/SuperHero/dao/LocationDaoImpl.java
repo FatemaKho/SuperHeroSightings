@@ -63,10 +63,11 @@ public class LocationDaoImpl implements LocationDao {
 
     @Override
     public void updateLocation(Location location) {
-        final String UPDATE_LOCATION = "UPDATE location SET locationName = ?, locationDesc = ?, locationLatitude, locationLongitude WHERE locationId = ?";
+        final String UPDATE_LOCATION = "UPDATE location SET locationName = ?, locationDesc = ?, locationAddress = ?, locationLatitude = ?, locationLongitude = ?  WHERE locationId = ?";
         jdbcTemplate.update(UPDATE_LOCATION,
                 location.getLocationName(),
                 location.getLocationDesc(),
+                location.getLocationAddress(),
                 location.getLocationLatitude(),
                 location.getLocationLongitude(),
                 location.getLocationId());
@@ -74,6 +75,10 @@ public class LocationDaoImpl implements LocationDao {
 
     @Override
     public void deleteLocationById(int id) {
+
+        final String DELETE_LOCATION_BY_SIGHTING = "DELETE FROM sighting WHERE locationId = ?";
+        jdbcTemplate.update(DELETE_LOCATION_BY_SIGHTING, id);
+
         final String DELETE_LOCATION = "DELETE FROM location WHERE locationId=?";
         jdbcTemplate.update(DELETE_LOCATION, id);
 
