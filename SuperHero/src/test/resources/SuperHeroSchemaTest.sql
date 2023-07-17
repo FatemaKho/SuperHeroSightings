@@ -1,9 +1,7 @@
 DROP DATABASE IF EXISTS SuperHeroDBTest;
 
-CREATE DATABASE SuperHeroDBTest;
-
+Create database SuperHeroDBTest;
 USE SuperHeroDBTest;
-
 
 CREATE TABLE location (
    locationId  INT NOT NULL AUTO_INCREMENT,
@@ -66,3 +64,4 @@ CREATE TABLE superhumanOrganizations (
     	FOREIGN KEY (organizationId)
     	REFERENCES organizations(organizationId)
 );
+

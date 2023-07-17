@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS SuperHeroDB;
+DROP DATABASE IF EXISTS SuperHeroDBTest;
 
-CREATE DATABASE SuperHeroDB;
+CREATE DATABASE SuperHeroDBTest;
 
-USE SuperHeroDB;
+USE SuperHeroDBTest;
 
 
 CREATE TABLE location (
