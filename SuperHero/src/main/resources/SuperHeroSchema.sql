@@ -36,10 +36,12 @@ CREATE TABLE superhuman (
 
 
 CREATE TABLE sighting(
-	sightingId INT PRIMARY KEY AUTO_INCREMENT,
-    superhumanId INT  NOT NULL,
-    dateSeen DATE NOT NULL,
-    FOREIGN KEY (superhumanId) REFERENCES superhuman(superhumanId)
+	    sightingId INT PRIMARY KEY AUTO_INCREMENT,
+        superHumanId INT  NOT NULL,
+        locationId INT NOT NULL,
+        dateSeen DATE NOT NULL,
+        FOREIGN KEY (superhumanId) REFERENCES superhuman(superhumanId),
+        FOREIGN KEY (locationId) REFERENCES location(locationId)
 );
 
 CREATE TABLE organizations(
