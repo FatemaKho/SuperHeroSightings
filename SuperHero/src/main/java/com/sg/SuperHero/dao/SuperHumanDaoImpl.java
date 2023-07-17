@@ -1,6 +1,7 @@
 package com.sg.SuperHero.dao;
 
 import com.sg.SuperHero.dto.SuperHuman;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -19,7 +20,7 @@ import java.util.List;
 public class SuperHumanDaoImpl implements SuperHumanDao {
 
     private final JdbcTemplate jdbcTemplate;
-
+    @Autowired
     public SuperHumanDaoImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -36,15 +37,22 @@ public class SuperHumanDaoImpl implements SuperHumanDao {
         return jdbcTemplate.query(sql, new SuperHumanRowMapper());
     }
 
-    @Transactional
     @Override
-    public void create(SuperHuman superhuman) {
+    public SuperHuman create(SuperHuman superhuman) {
         String sql = "INSERT INTO superhuman (superhumanName, superhumanDesc, superhumanIsHero, superpowerId) " +
                 "VALUES (?, ?, ?, ?)";
         jdbcTemplate.update(sql, superhuman.getSuperhumanName(), superhuman.getSuperhumanDesc(),
                 superhuman.isSuperhumanIsHero(), superhuman.getSuperpowerId());
+
+        // Retrieve the last inserted ID
+        String selectLastIdQuery = "SELECT LAST_INSERT_ID()";
+        int superhumanId = jdbcTemplate.queryForObject(selectLastIdQuery, Integer.class);
+
+        // Set the game ID
+        superhuman.setSuperhumanId(superhumanId);
+        return superhuman;
     }
-    @Transactional
+
     @Override
     public void update(SuperHuman superhuman) {
         String sql = "UPDATE superhuman SET superhumanName = ?, superhumanDesc = ?, " +
@@ -52,7 +60,7 @@ public class SuperHumanDaoImpl implements SuperHumanDao {
         jdbcTemplate.update(sql, superhuman.getSuperhumanName(), superhuman.getSuperhumanDesc(),
                 superhuman.isSuperhumanIsHero(), superhuman.getSuperpowerId(), superhuman.getSuperhumanId());
     }
-    @Transactional
+
     @Override
     public void delete(int superhumanId) {
         String sql = "DELETE FROM superhuman WHERE superhumanId = ?";
