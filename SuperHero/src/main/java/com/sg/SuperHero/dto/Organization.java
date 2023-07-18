@@ -1,5 +1,7 @@
 package com.sg.SuperHero.dto;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Organization {
@@ -9,6 +11,7 @@ public class Organization {
     private String organizationAddress;
     private String organizationContactInfo;
     private Boolean organizationIsHero;
+    private List<SuperHuman> listOfSuperhumans = new ArrayList<SuperHuman>();
 
     public int getOrganizationId() {
         return organizationId;
@@ -50,12 +53,20 @@ public class Organization {
         this.organizationContactInfo = organizationContactInfo;
     }
 
-    public Boolean organizationIsHero() {
+    public Boolean getOrganizationIsHero() {
         return organizationIsHero;
     }
 
     public void setOrganizationIsHero(Boolean organizationIsHero) {
         this.organizationIsHero = organizationIsHero;
+    }
+
+    public List<SuperHuman> getListOfSuperhumans() {
+        return listOfSuperhumans;
+    }
+
+    public void setListOfSuperhumans(List<SuperHuman> listOfSuperhumans) {
+        this.listOfSuperhumans = listOfSuperhumans;
     }
 
     @Override
@@ -74,7 +85,9 @@ public class Organization {
             return false;
         if (!Objects.equals(organizationContactInfo, that.organizationContactInfo))
             return false;
-        return Objects.equals(organizationIsHero, that.organizationIsHero);
+        if (!Objects.equals(organizationIsHero, that.organizationIsHero))
+            return false;
+        return Objects.equals(listOfSuperhumans, that.listOfSuperhumans);
     }
 
     @Override
@@ -85,6 +98,7 @@ public class Organization {
         result = 31 * result + (organizationAddress != null ? organizationAddress.hashCode() : 0);
         result = 31 * result + (organizationContactInfo != null ? organizationContactInfo.hashCode() : 0);
         result = 31 * result + (organizationIsHero != null ? organizationIsHero.hashCode() : 0);
+        result = 31 * result + (listOfSuperhumans != null ? listOfSuperhumans.hashCode() : 0);
         return result;
     }
 }

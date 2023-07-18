@@ -27,10 +27,10 @@ class SightingDaoDBTest{
 
     @BeforeEach
     void setUp() {
-        List<Sighting> sightings = SightingDao.getAllSightings();
-        for(Sighting sighting : sightings) {
-            sightingDao.deleteSighting(sighting.getSightingId());
-        }
+//        List<Sighting> sightings = SightingDao.getAllSightings();
+//        for(Sighting sighting : sightings) {
+//            sightingDao.deleteSighting(sighting.getSightingId());
+//        }
     }
 
     @Test
